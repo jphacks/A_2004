@@ -1,0 +1,55 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  # ベースイメージ
+  config.vm.box = "bento/ubuntu-18.04"
+  # 共有ディレクトリ設定
+  config.vm.synced_folder "./shared", "/home/vagrant/shared"
+  
+  # VirtualBox 設定
+  config.vm.provider :virtualbox do |vb|
+    vb.gui    = true    # デスクトップ環境を使うので GUI を有効にする
+    vb.cpus   = 2       # CPU 割り当て
+    vb.memory = "4096"  # メモリ割り当て
+    vb.customize [
+      "modifyvm"          , :id,
+      "--vram"            , "256",
+      "--clipboard"       , "bidirectional",
+      "--accelerate3d"    , "on",
+      "--hwvirtex"        , "on",
+      "--nestedpaging"    , "on",
+      "--largepages"      , "on",
+      "--ioapic"          , "on",
+      "--pae"             , "on",
+      "--paravirtprovider", "kvm",
+    ]
+  end
+
+  config.vm.network :forwarded_port, guest: 3000, host: 3000
+  #config.vm.network :private_network, ip: "192.168.33.10"
+  
+  # 初期構築スクリプト
+  config.vm.provision :shell, :inline => <<-EOL
+    # 日本語化設定
+    sudo cp /etc/apt/sources.list /etc/apt/sources.list.BAK
+    sudo sed -i 's/archive.ubuntu.com/jp.archive.ubuntu.com/g' /etc/apt/sources.list
+    wget -q https://www.ubuntulinux.jp/ubuntu-ja-archive-keyring.gpg -O- | sudo apt-key add -
+    wget -q https://www.ubuntulinux.jp/ubuntu-jp-ppa-keyring.gpg -O- | sudo apt-key add -
+    sudo wget https://www.ubuntulinux.jp/sources.list.d/bionic.list -O /etc/apt/sources.list.d/ubuntu-ja.list
+    sudo apt update -y
+    sudo apt upgrade -y
+    # 日本語関連パックをインストールする
+    sudo apt install -y $(check-language-support -l ja) language-pack-ja ubuntu-defaults-ja manpages-ja manpages-ja-dev
+    # 日本語フォントをインストールする
+    sudo apt install -y fonts-noto fonts-ipafont fonts-ipaexfont fonts-vlgothic fonts-takao
+    # デスクトップ環境をインストールする
+    sudo apt install -y ubuntu-desktop gnome-tweak-tool
+    # 日本語環境に切り替える
+    sudo update-locale LANG=ja_JP.UTF-8
+    # タイムゾーンを日本時間に変更する
+    sudo timedatectl set-timezone Asia/Tokyo
+    # デフォルトのエディタを vim に変更する
+    sudo update-alternatives --set editor /usr/bin/vim.basic
+EOL
+end
