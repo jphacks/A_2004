@@ -1,3 +1,4 @@
 .vagrant/
 *.pyc
 .DS_Store
+deep/5Steps-PyTorch-DCGAN-master/sample-data/jpg/*.jpg
