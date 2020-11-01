@@ -1,4 +1,7 @@
 .vagrant/
 *.pyc
 .DS_Store
-deep/5Steps-PyTorch-DCGAN-master/sample-data/jpg/*.jpg
+deep/DCGAN/sample-data/jpg/*.jpg
+deep/DCGAN/Generated_Image/*.jpg
+deep/DCGAN/Weight_Discriminator/*.pth
+deep/DCGAN/Weight_Generator/*.pth
