@@ -8,7 +8,17 @@
         $(document).ready(function(){
         $('img').hide().slideDown(1500);
         $('.display-4').hide().fadeIn(1000);
+        $('img').hover(function () 
+        {
+            $(this).stop().animate({"opacity":"0.5"});
+		},function () 
+        {
+            $(this).stop().animate({"opacity":"1"});
+		});
     });
+        
+    
+
     </script>
     <!-- end
     ================================================== -->
