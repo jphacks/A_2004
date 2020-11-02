@@ -3,32 +3,20 @@
     ================================================== -->
     <script>
     $(document).ready(function(){
-        $('img').hide();
+    $('img').hide();
     var exit_count = 0;
     var elems_count = 0;
     function repeat_show(elems$) {
-    elems_count = elems$.length;
-    elems$.eq(exit_count).show('slow', function() {
-    exit_count ++;
-    if(exit_count < elems_count) {
-    repeat_show(elems$);
-        } 
-    });  
+        elems_count = elems$.length;
+        elems$.eq(exit_count).show('slow', function() {
+        exit_count ++;
+            if(exit_count < elems_count) {
+            repeat_show(elems$);
+            } 
+        });  
     }
     repeat_show($('img'));
-        $(document).ready(function(){
-        $('img').hide().slideDown(1500);
-        $('.display-4').hide().fadeIn(1000);
-        $('.twitter-share-button, .line-it-button').css("display" , "none");
-        $('img').hover(function () 
-    {
-        $(this).stop().animate({"opacity":"0.5"});
-        $('.twitter-share-button, .line-it-button').fadeIn();
-    },function () 
-    {
-        $(this).stop().animate({"opacity":"1"});
-        $('.twitter-share-button, .line-it-button').fadeOut();
-    });
+    $('.display-4').hide().fadeIn(1000);
     });
 
     </script>
