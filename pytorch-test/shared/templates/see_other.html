@@ -5,10 +5,22 @@
     <!-- Bootstrap core JavaScript(jQuery)
     ================================================== -->
     <script>
-        $(document).ready(function(){
-        $('img').hide().slideDown(1500);
-        $('.display-4').hide().fadeIn(1000);
+    $(document).ready(function(){
+        $('img').hide();
+    var exit_count = 0;
+    var elems_count = 0;
+    function repeat_show(elems$) {
+    elems_count = elems$.length;
+    elems$.eq(exit_count).show('slow', function() {
+    exit_count ++;
+    if(exit_count < elems_count) {
+    repeat_show(elems$);
+        } 
+    });  
+    }
+    repeat_show($('img'));
     });
+
     </script>
     <!-- end
     ================================================== -->
