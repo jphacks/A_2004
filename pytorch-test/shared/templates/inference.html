@@ -33,6 +33,30 @@
           // カメラを作成
           const camera = new THREE.PerspectiveCamera(45, width / height);
           camera.position.set(0, 0, +1000);
+
+          // Load GLTF or GLB
+    const loader = new THREE.GLTFLoader();
+    const url = "../static/js/loader/GLTFLoader.js";
+
+    let model = null;
+    loader.load(
+        url,
+        function (gltf) {
+            model = gltf.scene;
+            // model.name = "model_with_cloth";
+            model.scale.set(400.0, 400.0, 400.0);
+            model.position.set(0, -400, 0);
+            scene.add(gltf.scene);
+
+            // model["test"] = 100;
+        },
+        function (error) {
+            console.log('An error happened');
+            console.log(error);
+        }
+    );
+    renderer.gammaOutput = true;
+    renderer.gammaFactor = 2.2;
     
           // 箱を作成
           const geometry = new THREE.BoxGeometry(400, 400, 400);
