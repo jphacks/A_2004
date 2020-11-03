@@ -14,6 +14,9 @@ pip3 install gunicorn==19.10.0
 pip3 install torch==1.4.0+cpu torchvision==0.5.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
 pip3 install flask
 pip3 install datetime
+pip3 install tqdm
+pip3 install statistics
+pip3 install networks
 pip3 install future --upgrade
 # 通信の設定 
 sudo systemctl stop firewalld.service
