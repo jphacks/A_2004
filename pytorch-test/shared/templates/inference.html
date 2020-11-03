@@ -8,7 +8,7 @@
     <h1 class="display-4">{{name}}!</h1>
     <p class="mt-5">Confidence: <strong>{{confidence}}%</strong></p>
     <div class="my-2">
-        <img style="max-width: none; width: 100%;" src="/static/img/1426,420.png" alt="">
+        <img style="max-width: 600px; width: 100%;" src="{{ url_for('static', filename=generated_image) }}" alt="">
     </div>
     <script>
         // ページの読み込みを待つ
@@ -85,7 +85,6 @@
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <div class="line-it-button" data-lang="ja" data-type="share-b" data-ver="3" data-url="http://127.0.0.1:3000/" data-color="default" data-size="small" data-count="true" style="display: none;"></div>
     <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
-
 </div>
 
 {% endblock %}
