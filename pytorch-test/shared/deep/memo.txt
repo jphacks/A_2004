@@ -1,22 +1,25 @@
 リンク集
-・概論
-
+・GANの概論
 生成技術GANの調査記事
 https://qiita.com/tomohiku/items/7fd8ef0d8f0ec5e60374
 
 ・Datasets
-
 Fachion-mnist
 https://github.com/zalandoresearch/fashion-mnist
 
 ・Models
 
 DCGAN
-畳み込み層を導入した画像生成モデル
+畳み込み層を導入した画像生成モデル（採用）
 https://qiita.com/hkthirano/items/7381095aaee668513487
+
 Pytorch Tutorial
 https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html
 
 CycleGAN
 スタイル変換のモデル
 https://ledge.ai/cyclegan/
+
+・その他実装で調べたこと
+Pytorchでモデルの保存と読み込み
+https://tzmi.hatenablog.com/entry/2020/03/05/222813
