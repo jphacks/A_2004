@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import torch
 from torch import nn, optim
 from torchvision.utils import save_image
@@ -17,12 +19,13 @@ dataset = datasets.ImageFolder("sample-data/",
 batch_size = 64
 
 # dataloaderの準備
+print("dataloaderの準備")
 data_loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
 
 ### Generatorの作成 ###
 class Generator(nn.Module):
     def __init__(self):
-        super().__init__()
+        super(Generator, self).__init__()
         self.main = nn.Sequential(
 
             nn.ConvTranspose2d(100, 256, 4, 1, 0, bias=False),
@@ -52,7 +55,7 @@ class Generator(nn.Module):
 ### Discriminatorの作成 ###
 class Discriminator(nn.Module):
     def __init__(self):
-        super().__init__()
+        super(Discriminator, self).__init__()
         self.main = nn.Sequential(
 
             nn.Conv2d(3, 32, 4, 2, 1, bias=False),
@@ -76,9 +79,14 @@ class Discriminator(nn.Module):
     def forward(self, x):
         return self.main(x).squeeze()
 
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+print('using device:', device)
+
 ### 訓練関数の作成 ###
-model_G = Generator().to("cuda:0")
-model_D = Discriminator().to("cuda:0")
+print("訓練関数の作成")
+# model_G = Generator().to(device)
+model_G = Generator().to(device)
+model_D = Discriminator().to(device)
 
 params_G = optim.Adam(model_G.parameters(),
     lr=0.0002, betas=(0.5, 0.999))
@@ -89,12 +97,12 @@ params_D = optim.Adam(model_D.parameters(),
 nz = 100
 
 # ロスを計算するときのラベル変数
-ones = torch.ones(batch_size).to("cuda:0") # 正例 1
-zeros = torch.zeros(batch_size).to("cuda:0") # 負例 0
+ones = torch.ones(batch_size).to(device) # 正例 1
+zeros = torch.zeros(batch_size).to(device) # 負例 0
 loss_f = nn.BCEWithLogitsLoss()
 
 # 途中結果の確認用の潜在特徴z
-check_z = torch.randn(batch_size, nz, 1, 1).to("cuda:0")
+check_z = torch.randn(batch_size, nz, 1, 1).to(device)
 
 # エラー推移
 result = {}
@@ -110,7 +118,7 @@ def train_dcgan(model_G, model_D, params_G, params_D, data_loader):
 
         # == Generatorの訓練 ==
         # 偽画像を生成
-        z = torch.randn(batch_len, nz, 1, 1).to("cuda:0")
+        z = torch.randn(batch_len, nz, 1, 1).to(device)
         fake_img = model_G(z)
 
         # 偽画像の値を一時的に保存 => 注(１)
@@ -130,7 +138,7 @@ def train_dcgan(model_G, model_D, params_G, params_D, data_loader):
 
         # == Discriminatorの訓練 ==
         # sample_dataの実画像
-        real_img = real_img.to("cuda:0")
+        real_img = real_img.to(device)
 
         # 実画像を実画像（ラベル１）と識別できるようにロスを計算
         real_out = model_D(real_img)
@@ -160,19 +168,21 @@ def train_dcgan(model_G, model_D, params_G, params_D, data_loader):
     return mean(log_loss_G), mean(log_loss_D)
 
 ### DCGANの訓練スタート ###
-for epoch in range(500):
+for epoch in range(3):
     train_dcgan(model_G, model_D, params_G, params_D, data_loader)
     
     # 訓練途中のモデル・生成画像の保存
-    if epoch % 10 == 0:
+    if epoch % 2 == 0:
         torch.save(
             model_G.state_dict(),
             "Weight_Generator/G_{:03d}.pth".format(epoch),
-            pickle_protocol=4)
+            pickle_protocol=2)
+            # pickle_protocol=4) #GPU mode
         torch.save(
             model_D.state_dict(),
             "Weight_Discriminator/D_{:03d}.pth".format(epoch),
-            pickle_protocol=4)
+            pickle_protocol=2)
+            # pickle_protocol=4) #GPU mode
 
         generated_img = model_G(check_z)
         save_image(generated_img,"Generated_Image/{:03d}.jpg".format(epoch))
