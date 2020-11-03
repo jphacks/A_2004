@@ -24,7 +24,7 @@ data_loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
 ### Generatorの作成 ###
 class Generator(nn.Module):
     def __init__(self):
-        super().__init__()
+        super(Generator,self).__init__()
         self.main = nn.Sequential(
 
             nn.ConvTranspose2d(100, 256, 4, 1, 0, bias=False),
@@ -54,7 +54,7 @@ class Generator(nn.Module):
 ### Discriminatorの作成 ###
 class Discriminator(nn.Module):
     def __init__(self):
-        super().__init__()
+        super(Discriminator,self).__init__()
         self.main = nn.Sequential(
 
             nn.Conv2d(3, 32, 4, 2, 1, bias=False),
@@ -109,7 +109,6 @@ def train_dcgan(model_G, model_D, params_G, params_D, data_loader):
     for real_img, _ in tqdm.tqdm(data_loader):
         batch_len = len(real_img)
 
-
         # == Generatorの訓練 ==
         # 偽画像を生成
         z = torch.randn(batch_len, nz, 1, 1).to("cuda:0")
@@ -162,7 +161,7 @@ def train_dcgan(model_G, model_D, params_G, params_D, data_loader):
     return mean(log_loss_G), mean(log_loss_D)
 
 ### DCGANの訓練スタート ###
-for epoch in range(20):
+for epoch in range(1000):
     train_dcgan(model_G, model_D, params_G, params_D, data_loader)
     
     # 訓練途中のモデル・生成画像の保存
@@ -170,11 +169,11 @@ for epoch in range(20):
         torch.save(
             model_G.state_dict(),
             "Weight_Generator/G_{:03d}.pth".format(epoch),
-            pickle_protocol=4)
+            pickle_protocol=2)
         torch.save(
             model_D.state_dict(),
             "Weight_Discriminator/D_{:03d}.pth".format(epoch),
-            pickle_protocol=4)
+            pickle_protocol=2)
 
         generated_img = model_G(check_z)
         save_image(generated_img,"Generated_Image/{:03d}.jpg".format(epoch))
