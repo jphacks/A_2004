@@ -5,3 +5,4 @@ deep/DCGAN/sample-data/jpg/*.jpg
 deep/DCGAN/Generated_Image/*.jpg
 deep/DCGAN/Weight_Discriminator/*.pth
 deep/DCGAN/Weight_Generator/*.pth
+pytorch-test/shared/models.pyc
