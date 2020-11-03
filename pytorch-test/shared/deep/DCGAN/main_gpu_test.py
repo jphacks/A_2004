@@ -165,22 +165,22 @@ def train_dcgan(model_G, model_D, params_G, params_D, data_loader):
     return mean(log_loss_G), mean(log_loss_D)
 
 ### DCGANの訓練スタート ###
-for epoch in range(20):
-    train_dcgan(model_G, model_D, params_G, params_D, data_loader)
+# for epoch in range(20):
+#     train_dcgan(model_G, model_D, params_G, params_D, data_loader)
     
-    # 訓練途中のモデル・生成画像の保存
-    if epoch % 10 == 0:
-        torch.save(
-            model_G.state_dict(),
-            "Weight_Generator/G_{:03d}.pth".format(epoch),
-            pickle_protocol=2)
-        torch.save(
-            model_D.state_dict(),
-            "Weight_Discriminator/D_{:03d}.pth".format(epoch),
-            pickle_protocol=2)
+#     # 訓練途中のモデル・生成画像の保存
+#     if epoch % 10 == 0:
+#         torch.save(
+#             model_G.state_dict(),
+#             "Weight_Generator/G_{:03d}.pth".format(epoch),
+#             pickle_protocol=2)
+#         torch.save(
+#             model_D.state_dict(),
+#             "Weight_Discriminator/D_{:03d}.pth".format(epoch),
+#             pickle_protocol=2)
 
-        generated_img = model_G(check_z)
-        save_image(generated_img,"Generated_Image/{:03d}.jpg".format(epoch))
+#         generated_img = model_G(check_z)
+#         save_image(generated_img,"Generated_Image/{:03d}.jpg".format(epoch))
 
 make_file_num = 1
 z = torch.randn(make_file_num, nz, 1, 1).to(device)
