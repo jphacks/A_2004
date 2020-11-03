@@ -2,21 +2,29 @@
 
 {% block content %}
 <div class="row">
+    <!-- Bootstrap core JavaScript(jQuery)
+    ================================================== -->
+    <script>
+        $(document).ready(function(){
+        $('.display-4').hide().fadeIn(1500);
+        $('img').hide().fadeIn(1500);
+        $('p').hide().fadeIn(2000);
+    });
+    </script>
+    <!-- end
+    ================================================== -->
     <div class="col-md-12">
         <div class="px-3 py-3 text-center">
             <h1 class="display-4">About this project</h1>
             <div class="my-2">
-                <img style="max-width: 600px; width: 100%;" src="{{ url_for('static', filename='img/flask+pytorch.png') }}" alt="">
+                <img style="max-width: 800px; width: 100%;" src="{{ url_for('static', filename='img/flask+pytorch+jphacks.png') }}" alt="">
             </div>
-            <p class="lead">This project is aimed to help Pytorch machine learning developers to quickly build a Flask
-                web app
-                in a Docker container ready to be deployed. <br> <a
-                    href="https://github.com/imadtoubal/Pytorch-Flask-Docker-App"> View on GitHub</a></p>
+            <p class="lead">This project is aimed to help Pytorch machine learning developers to quickly build a Flask web app. <br> <a
+                    href="https://github.com/jphacks/A_2004"> View on GitHub</a></p>
             <p>
-                By default, this app uses MobileNetV2 image classifier that was pre-trained on the ImageNet dataset.
-                This can be easily changed with any custom deep learning model. If you wish to contribute to the
-                project, please feel free to add more example models. More explanation as to how to contribute can be
-                dound in the GitHub repository link.
+                アイヌ文化に関して以下の専門家のご助言を頂きました。お忙しい中時間を割いていただきありがとうございます。<br>
+                ・北海道大学文学部　人文学専攻　アイヌ・先住民学講座 アイヌ・先住民学研究室　　北原 次郎太モコットゥナㇱ　先生<br>
+                ・北海道大学　北方生物圏フィールド科学センター　耕地圏ステーション　植物園　 加藤　克　先生
             </p>
 
         </div>

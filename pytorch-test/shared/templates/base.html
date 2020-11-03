@@ -2,16 +2,58 @@
 <!-- saved from url=(0051)https://getbootstrap.com/docs/4.0/examples/pricing/ -->
 <html lang="en">
   <head>
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.min.js"
+    ></script>
+    <script src="../static/js/loader/GLTFLoader.js"
+    ></script>
+
+    <script>
+      $("#inputGroupFile").on("change", function () {
+        //get the file name
+        let fileName = $(this).val();
+
+        //only leave filename in the path
+        fileParts = fileName.split(/\/|\\/);
+        let name = fileParts[fileParts.length - 1];
+        console.log(fileParts);
+
+        //replace the "Choose a file" label
+        $(this).next(".custom-file-label").html(name);
+      });
+
+      $(document).ready(function(){
+        $('a').hide().fadeIn(1000);
+        $('h5').hide().fadeIn(1000);
+        $('small').hide().fadeIn(1000);
+      });
+
+    </script>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta name="description" content="jphacks2020, a_2004 productpage" />
+    <meta name="author" content="barachan15, Choke222, EtoKohe, Ha-chan, Kento-nishimura-0722, kuchimachi" />
 
-    <title>Flask Pytorch App</title>
+    <title>Deep AInu WebPage</title>
 
     <!-- Bootstrap core CSS -->
     <link
@@ -20,7 +62,8 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
-  </head>
+
+    </head>
 
   <body cz-shortcut-listen="true">
     <div
@@ -28,21 +71,27 @@
     >
     <!-- ヘッダー -->
       <h5 class="my-0 mr-md-auto font-weight-normal">
-        <a href="/">Flask Pytorch App</a>
-      </h5>
+        <a href="/"><img
+          src="/static/img/productlogo.png"
+          alt=""
+          width="150"
+      /></a></h5>
       <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="/test">Test</a>
+        <a class="p-2 text-dark" href="/confirm">作成履歴</a>
+      </nav>
+      <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="/see_other">他の人の模様を見る</a>
       </nav>
       <nav class="my-2 my-md-0 mr-md-3">
         <a class="p-2 text-dark" href="/about">About project</a>
       </nav>
       <a
         class="btn btn-outline-primary"
-        href="https://github.com/imadtoubal/Pytorch-Flask-Docker-App"
+        href="https://github.com/jphacks/A_2004"
         >Fork on GitHub</a
       >
     </div>
-    <div class="container">
+    <div class="container-fluid">
       {% block content %}{% endblock %}
     </div>
 
@@ -52,12 +101,12 @@
           <div class="col-12 col-md">
             <img
               class="mb-2"
-              src="http://www.toubal.com/img/toubal-logo.png"
+              src="/static/img/teamlogo.png"
               alt=""
-              width="150"
+              width="200px"
             />
             <small class="d-block mb-3 text-muted"
-              >© Toubal, Imad Eddine 2019</small
+              >Team "お寿司、食べたい"</small
             >
           </div>
           <div class="col-6 col-md">
@@ -66,15 +115,15 @@
               <li>
                 <a
                   class="text-muted"
-                  href="https://github.com/imadtoubal/Pytorch-Flask-Docker-App"
-                  >Code on GitHub</a
+                  href="https://ainu-upopoy.jp/"
+                  >UPOPOY</a
                 >
               </li>
               <li>
                 <a
                   class="text-muted"
-                  href="https://github.com/imadtoubal/Pytorch-Flask-Docker-App/issues"
-                  >How to contribute</a
+                  href="https://www.hokudai.ac.jp/fsc/bg/g_n_peoples.html#hoppou_2F"
+                  >北大植物園　北方民族資料室</a
                 >
               </li>
             </ul>
@@ -103,10 +152,10 @@
             <h5>About</h5>
             <ul class="list-unstyled text-small">
               <li>
-                <a class="text-muted" href="http://www.toubal.com">About me</a>
+                <a class="text-muted" href="https://www.eng.hokudai.ac.jp/news/?file=7008">About us</a>
               </li>
               <li>
-                <a class="text-muted" href="https://www.github.com/imadtoubal"
+                <a class="text-muted" href="https://github.com/jphacks/A_2004"
                   >GitHub</a
                 >
               </li>
@@ -116,38 +165,6 @@
       </footer>
     </div>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-      crossorigin="anonymous"
-    ></script>
-
-    <script>
-      $("#inputGroupFile").on("change", function () {
-        //get the file name
-        let fileName = $(this).val();
-
-        //only leave filename in the path
-        fileParts = fileName.split(/\/|\\/);
-        let name = fileParts[fileParts.length - 1];
-        console.log(fileParts);
-
-        //replace the "Choose a file" label
-        $(this).next(".custom-file-label").html(name);
-      });
-    </script>
+  
   </body>
 </html>

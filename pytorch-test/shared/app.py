@@ -18,9 +18,13 @@ def index():
 def about():
     return render_template('about.html')
 
-@app.route('/test')
-def test():
-    return render_template('test.html')
+@app.route('/confirm')
+def confirm():
+    return render_template('confirm.html')
+
+@app.route('/see_other')
+def see_other():
+    return render_template('see_other.html')
 
 @app.route('/infer', methods=['POST'])
 def success():
