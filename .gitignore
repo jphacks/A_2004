@@ -1,4 +1,3 @@
 .vagrant/
-.pyc
+＊.pyc
 .DS_Store
-pytorch-test/shared/models.pyc
