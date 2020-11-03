@@ -184,5 +184,12 @@ for epoch in range(20):
 
 make_file_num = 1
 z = torch.randn(make_file_num, nz, 1, 1).to(device)
+model_path = 'Weight_Generator/G_990.pth'
+model_G.load_state_dict(torch.load(model_path))
 fake_img = model_G(z)
-save_image(fake_img,"gen.jpg")
+save_image(fake_img,"gen_990.jpg")
+
+model_path = 'Weight_Generator/G_250.pth'
+model_G.load_state_dict(torch.load(model_path))
+fake_img = model_G(z)
+save_image(fake_img,"gen_250.jpg")
