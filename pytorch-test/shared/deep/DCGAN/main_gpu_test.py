@@ -79,8 +79,8 @@ class Discriminator(nn.Module):
         return self.main(x).squeeze()
 
 ### 訓練関数の作成 ###
-model_G = Generator().to("cuda:0")
-model_D = Discriminator().to("cuda:0")
+model_G = Generator().to(device)
+model_D = Discriminator().to(device)
 
 params_G = optim.Adam(model_G.parameters(),
     lr=0.0002, betas=(0.5, 0.999))
@@ -91,17 +91,20 @@ params_D = optim.Adam(model_D.parameters(),
 nz = 100
 
 # ロスを計算するときのラベル変数
-ones = torch.ones(batch_size).to("cuda:0") # 正例 1
-zeros = torch.zeros(batch_size).to("cuda:0") # 負例 0
+ones = torch.ones(batch_size).to(device) # 正例 1
+zeros = torch.zeros(batch_size).to(device) # 負例 0
 loss_f = nn.BCEWithLogitsLoss()
 
 # 途中結果の確認用の潜在特徴z
-check_z = torch.randn(batch_size, nz, 1, 1).to("cuda:0")
+check_z = torch.randn(batch_size, nz, 1, 1).to(device)
 
 # エラー推移
 result = {}
 result["log_loss_G"] = []
 result["log_loss_D"] = []
+
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+print('using device:', device)
 
 # 訓練関数
 def train_dcgan(model_G, model_D, params_G, params_D, data_loader):
@@ -112,7 +115,7 @@ def train_dcgan(model_G, model_D, params_G, params_D, data_loader):
 
         # == Generatorの訓練 ==
         # 偽画像を生成
-        z = torch.randn(batch_len, nz, 1, 1).to("cuda:0")
+        z = torch.randn(batch_len, nz, 1, 1).to(device)
         fake_img = model_G(z)
 
         # 偽画像の値を一時的に保存 => 注(１)
@@ -132,7 +135,7 @@ def train_dcgan(model_G, model_D, params_G, params_D, data_loader):
 
         # == Discriminatorの訓練 ==
         # sample_dataの実画像
-        real_img = real_img.to("cuda:0")
+        real_img = real_img.to(device)
 
         # 実画像を実画像（ラベル１）と識別できるようにロスを計算
         real_out = model_D(real_img)
@@ -178,3 +181,8 @@ for epoch in range(20):
 
         generated_img = model_G(check_z)
         save_image(generated_img,"Generated_Image/{:03d}.jpg".format(epoch))
+
+make_file_num = 1
+z = torch.randn(make_file_num, nz, 1, 1).to(device)
+fake_img = model_G(z)
+save_image(fake_img,"gen.jpg")
