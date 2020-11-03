@@ -1,8 +1,8 @@
 .vagrant/
 *.pyc
 .DS_Store
-deep/DCGAN/sample-data/jpg/*.jpg
-deep/DCGAN/Generated_Image/*.jpg
-deep/DCGAN/Weight_Discriminator/*.pth
-deep/DCGAN/Weight_Generator/*.pth
+pytorch-test/shared/deep/DCGAN/sample-data/jpg/*.jpg
+pytorch-test/shared/deep/DCGAN/Generated_Image/*.jpg
+pytorch-test/shared/deep/DCGAN/Weight_Discriminator/*.pth
+pytorch-test/shared/deep/DCGAN/Weight_Generator/*.pth
 pytorch-test/shared/models.pyc

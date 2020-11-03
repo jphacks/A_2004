@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import torch
 from torch import nn, optim
 from torchvision.utils import save_image
@@ -160,7 +162,7 @@ def train_dcgan(model_G, model_D, params_G, params_D, data_loader):
     return mean(log_loss_G), mean(log_loss_D)
 
 ### DCGANの訓練スタート ###
-for epoch in range(500):
+for epoch in range(20):
     train_dcgan(model_G, model_D, params_G, params_D, data_loader)
     
     # 訓練途中のモデル・生成画像の保存
