@@ -24,7 +24,7 @@ data_loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
 ### Generatorの作成 ###
 class Generator(nn.Module):
     def __init__(self):
-        super().__init__()
+        super(Generator,self).__init__()
         self.main = nn.Sequential(
 
             nn.ConvTranspose2d(100, 256, 4, 1, 0, bias=False),
@@ -54,7 +54,7 @@ class Generator(nn.Module):
 ### Discriminatorの作成 ###
 class Discriminator(nn.Module):
     def __init__(self):
-        super().__init__()
+        super(Discriminator,self).__init__()
         self.main = nn.Sequential(
 
             nn.Conv2d(3, 32, 4, 2, 1, bias=False),
@@ -77,6 +77,9 @@ class Discriminator(nn.Module):
 
     def forward(self, x):
         return self.main(x).squeeze()
+
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+print('using device:', device)
 
 ### 訓練関数の作成 ###
 model_G = Generator().to(device)
@@ -102,9 +105,6 @@ check_z = torch.randn(batch_size, nz, 1, 1).to(device)
 result = {}
 result["log_loss_G"] = []
 result["log_loss_D"] = []
-
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-print('using device:', device)
 
 # 訓練関数
 def train_dcgan(model_G, model_D, params_G, params_D, data_loader):
@@ -173,11 +173,11 @@ for epoch in range(20):
         torch.save(
             model_G.state_dict(),
             "Weight_Generator/G_{:03d}.pth".format(epoch),
-            pickle_protocol=4)
+            pickle_protocol=2)
         torch.save(
             model_D.state_dict(),
             "Weight_Discriminator/D_{:03d}.pth".format(epoch),
-            pickle_protocol=4)
+            pickle_protocol=2)
 
         generated_img = model_G(check_z)
         save_image(generated_img,"Generated_Image/{:03d}.jpg".format(epoch))
