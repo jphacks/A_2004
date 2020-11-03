@@ -6,7 +6,7 @@
     ================================================== -->
     <script>
         $(document).ready(function(){
-        $('img').hide().fadeIn();
+        $('#GenImage1').hide().fadeIn();
         $('.display-4').hide().fadeIn(1000);
     });
     </script>
@@ -14,12 +14,10 @@
     ================================================== -->
     <div class="col-md-12">
         <div class="px-3 py-3 text-center">
-            <h1 class="display-4">Test page</h1>
+            <h2>生成した模様一覧</h2>
             <div class="my-2">
-                <img style="max-width: 600px; width: 100%;" src="{{ url_for('static', filename='img/books.jpg') }}" alt="">
+                <img id= "GenImage1" style="max-width: 600px; width: 100%;" src="{{ url_for('static', filename='img/books.jpg') }}" alt="">
             </div>
-            <p class="lead">ここはconfirmです
-            </p>
         </div>
     </div>
 </div>
