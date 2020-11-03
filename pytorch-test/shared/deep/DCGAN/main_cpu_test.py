@@ -9,18 +9,18 @@ import tqdm
 from statistics import mean
 import statistics
 
-### データの読み込み ###
-# datasetrの準備
-dataset = datasets.ImageFolder("sample-data/",
-    transform=transforms.Compose([
-        transforms.ToTensor()
-]))
+# ### データの読み込み ###
+# # datasetrの準備
+# dataset = datasets.ImageFolder("sample-data/",
+#     transform=transforms.Compose([
+#         transforms.ToTensor()
+# ]))
 
-batch_size = 64
+# batch_size = 64
 
-# dataloaderの準備
-print("dataloaderの準備")
-data_loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
+# # dataloaderの準備
+# print("dataloaderの準備")
+# data_loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
 
 ### Generatorの作成 ###
 class Generator(nn.Module):
@@ -84,105 +84,119 @@ print('using device:', device)
 
 ### 訓練関数の作成 ###
 print("訓練関数の作成")
-# model_G = Generator().to(device)
 model_G = Generator().to(device)
 model_D = Discriminator().to(device)
 
-params_G = optim.Adam(model_G.parameters(),
-    lr=0.0002, betas=(0.5, 0.999))
-params_D = optim.Adam(model_D.parameters(),
-    lr=0.0002, betas=(0.5, 0.999))
+# params_G = optim.Adam(model_G.parameters(),
+#     lr=0.0002, betas=(0.5, 0.999))
+# params_D = optim.Adam(model_D.parameters(),
+#     lr=0.0002, betas=(0.5, 0.999))
+
+# # 潜在特徴100次元ベクトルz
+# nz = 100
+
+# # ロスを計算するときのラベル変数
+# ones = torch.ones(batch_size).to(device) # 正例 1
+# zeros = torch.zeros(batch_size).to(device) # 負例 0
+# loss_f = nn.BCEWithLogitsLoss()
+
+# # 途中結果の確認用の潜在特徴z
+# check_z = torch.randn(batch_size, nz, 1, 1).to(device)
+
+# # エラー推移
+# result = {}
+# result["log_loss_G"] = []
+# result["log_loss_D"] = []
+
+# # 訓練関数
+# def train_dcgan(model_G, model_D, params_G, params_D, data_loader):
+#     log_loss_G, log_loss_D = [], []
+#     for real_img, _ in tqdm.tqdm(data_loader):
+#         batch_len = len(real_img)
+
+
+#         # == Generatorの訓練 ==
+#         # 偽画像を生成
+#         z = torch.randn(batch_len, nz, 1, 1).to(device)
+#         fake_img = model_G(z)
+
+#         # 偽画像の値を一時的に保存 => 注(１)
+#         fake_img_tensor = fake_img.detach()
+
+#         # 偽画像を実画像（ラベル１）と騙せるようにロスを計算
+#         out = model_D(fake_img)
+#         loss_G = loss_f(out, ones[: batch_len])
+#         log_loss_G.append(loss_G.item())
+
+#         # 微分計算・重み更新 => 注（２）
+#         model_D.zero_grad()
+#         model_G.zero_grad()
+#         loss_G.backward()
+#         params_G.step()
+
+
+#         # == Discriminatorの訓練 ==
+#         # sample_dataの実画像
+#         real_img = real_img.to(device)
+
+#         # 実画像を実画像（ラベル１）と識別できるようにロスを計算
+#         real_out = model_D(real_img)
+#         loss_D_real = loss_f(real_out, ones[: batch_len])
+
+#         # 計算省略 => 注（１）
+#         fake_img = fake_img_tensor
+
+#         # 偽画像を偽画像（ラベル０）と識別できるようにロスを計算
+#         fake_out = model_D(fake_img_tensor)
+#         loss_D_fake = loss_f(fake_out, zeros[: batch_len])
+
+#         # 実画像と偽画像のロスを合計
+#         loss_D = loss_D_real + loss_D_fake
+#         log_loss_D.append(loss_D.item())
+
+#         # 微分計算・重み更新 => 注（２）
+#         model_D.zero_grad()
+#         model_G.zero_grad()
+#         loss_D.backward()
+#         params_D.step()
+
+#     result["log_loss_G"].append(statistics.mean(log_loss_G))
+#     result["log_loss_D"].append(statistics.mean(log_loss_D))
+#     print("log_loss_G =", result["log_loss_G"][-1], ", log_loss_D =", result["log_loss_D"][-1])
+
+#     return mean(log_loss_G), mean(log_loss_D)
+
+# ### DCGANの訓練スタート ###
+# for epoch in range(3):
+#     train_dcgan(model_G, model_D, params_G, params_D, data_loader)
+    
+#     # 訓練途中のモデル・生成画像の保存
+#     if epoch % 2 == 0:
+#         torch.save(
+#             model_G.state_dict(),
+#             "Weight_Generator/G_{:03d}.pth".format(epoch),
+#             pickle_protocol=2)
+#             # pickle_protocol=4) #GPU mode
+#         torch.save(
+#             model_D.state_dict(),
+#             "Weight_Discriminator/D_{:03d}.pth".format(epoch),
+#             pickle_protocol=2)
+#             # pickle_protocol=4) #GPU mode
+
+#         generated_img = model_G(check_z)
+#         save_image(generated_img,"Generated_Image/{:03d}.jpg".format(epoch))
 
 # 潜在特徴100次元ベクトルz
 nz = 100
 
-# ロスを計算するときのラベル変数
-ones = torch.ones(batch_size).to(device) # 正例 1
-zeros = torch.zeros(batch_size).to(device) # 負例 0
-loss_f = nn.BCEWithLogitsLoss()
+make_file_num = 1
+z = torch.randn(make_file_num, nz, 1, 1).to(device)
+model_path = 'Weight_Generator/G_490.pth'
+model_G.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
+fake_img = model_G(z)
+save_image(fake_img,"gen_490.jpg")
 
-# 途中結果の確認用の潜在特徴z
-check_z = torch.randn(batch_size, nz, 1, 1).to(device)
-
-# エラー推移
-result = {}
-result["log_loss_G"] = []
-result["log_loss_D"] = []
-
-# 訓練関数
-def train_dcgan(model_G, model_D, params_G, params_D, data_loader):
-    log_loss_G, log_loss_D = [], []
-    for real_img, _ in tqdm.tqdm(data_loader):
-        batch_len = len(real_img)
-
-
-        # == Generatorの訓練 ==
-        # 偽画像を生成
-        z = torch.randn(batch_len, nz, 1, 1).to(device)
-        fake_img = model_G(z)
-
-        # 偽画像の値を一時的に保存 => 注(１)
-        fake_img_tensor = fake_img.detach()
-
-        # 偽画像を実画像（ラベル１）と騙せるようにロスを計算
-        out = model_D(fake_img)
-        loss_G = loss_f(out, ones[: batch_len])
-        log_loss_G.append(loss_G.item())
-
-        # 微分計算・重み更新 => 注（２）
-        model_D.zero_grad()
-        model_G.zero_grad()
-        loss_G.backward()
-        params_G.step()
-
-
-        # == Discriminatorの訓練 ==
-        # sample_dataの実画像
-        real_img = real_img.to(device)
-
-        # 実画像を実画像（ラベル１）と識別できるようにロスを計算
-        real_out = model_D(real_img)
-        loss_D_real = loss_f(real_out, ones[: batch_len])
-
-        # 計算省略 => 注（１）
-        fake_img = fake_img_tensor
-
-        # 偽画像を偽画像（ラベル０）と識別できるようにロスを計算
-        fake_out = model_D(fake_img_tensor)
-        loss_D_fake = loss_f(fake_out, zeros[: batch_len])
-
-        # 実画像と偽画像のロスを合計
-        loss_D = loss_D_real + loss_D_fake
-        log_loss_D.append(loss_D.item())
-
-        # 微分計算・重み更新 => 注（２）
-        model_D.zero_grad()
-        model_G.zero_grad()
-        loss_D.backward()
-        params_D.step()
-
-    result["log_loss_G"].append(statistics.mean(log_loss_G))
-    result["log_loss_D"].append(statistics.mean(log_loss_D))
-    print("log_loss_G =", result["log_loss_G"][-1], ", log_loss_D =", result["log_loss_D"][-1])
-
-    return mean(log_loss_G), mean(log_loss_D)
-
-### DCGANの訓練スタート ###
-for epoch in range(3):
-    train_dcgan(model_G, model_D, params_G, params_D, data_loader)
-    
-    # 訓練途中のモデル・生成画像の保存
-    if epoch % 2 == 0:
-        torch.save(
-            model_G.state_dict(),
-            "Weight_Generator/G_{:03d}.pth".format(epoch),
-            pickle_protocol=2)
-            # pickle_protocol=4) #GPU mode
-        torch.save(
-            model_D.state_dict(),
-            "Weight_Discriminator/D_{:03d}.pth".format(epoch),
-            pickle_protocol=2)
-            # pickle_protocol=4) #GPU mode
-
-        generated_img = model_G(check_z)
-        save_image(generated_img,"Generated_Image/{:03d}.jpg".format(epoch))
+model_path = 'Weight_Generator/G_002.pth'
+model_G.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
+fake_img = model_G(z)
+save_image(fake_img,"gen_002.jpg")
