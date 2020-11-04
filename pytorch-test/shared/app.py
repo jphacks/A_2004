@@ -39,9 +39,9 @@ def about():
 def confirm():
     return render_template('confirm.html')
 
-@app.route('/see_other')
-def see_other():
-    return render_template('see_other.html')
+@app.route('/introduce')
+def introduce():
+    return render_template('introduce.html')
 
 @app.route('/infer', methods=['POST'])
 def success():
