@@ -10,73 +10,7 @@
     <div class="my-2">
         <img style="max-width: 600px; width: 100%;" src="{{ url_for('static', filename=generated_image) }}" alt="">
     </div>
-    <script>
-        // ページの読み込みを待つ
-        window.addEventListener('load', init);
     
-        function init() {
-    
-          // サイズを指定
-          const width = 960;
-          const height = 540;
-    
-          // レンダラーを作成
-          const renderer = new THREE.WebGLRenderer({
-            canvas: document.querySelector('#myCanvas')
-          });
-          renderer.setPixelRatio(window.devicePixelRatio);
-          renderer.setSize(width, height);
-    
-          // シーンを作成
-          const scene = new THREE.Scene();
-    
-          // カメラを作成
-          const camera = new THREE.PerspectiveCamera(45, width / height);
-          camera.position.set(0, 0, +1000);
-
-          // Load GLTF or GLB
-    const loader = new THREE.GLTFLoader();
-    const url = "../static/js/loader/GLTFLoader.js";
-
-    let model = null;
-    loader.load(
-        url,
-        function (gltf) {
-            model = gltf.scene;
-            // model.name = "model_with_cloth";
-            model.scale.set(400.0, 400.0, 400.0);
-            model.position.set(0, -400, 0);
-            scene.add(gltf.scene);
-
-            // model["test"] = 100;
-        },
-        function (error) {
-            console.log('An error happened');
-            console.log(error);
-        }
-    );
-    renderer.gammaOutput = true;
-    renderer.gammaFactor = 2.2;
-    
-          // 箱を作成
-          const geometry = new THREE.BoxGeometry(400, 400, 400);
-          const material = new THREE.MeshNormalMaterial();
-          const box = new THREE.Mesh(geometry, material);
-          scene.add(box);
-    
-          tick();
-    
-          // 毎フレーム時に実行されるループイベントです
-          function tick() {
-            box.rotation.y += 0.01;
-            renderer.render(scene, camera); // レンダリング
-    
-            requestAnimationFrame(tick);
-          }
-        }
-      </script>
-    
-    <canvas id="myCanvas"></canvas>
 
     <p class="mt-5"> <a href="/">もう一度作成する</a></p>
     <a href="/static/img/1426,420.png" download="AInu.png">画像を保存</a>
