@@ -4,9 +4,20 @@
 {% block content %}
 
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <p class="lead">File uploaded successfully. You have uploaded an image of</p>
-    <h1 class="display-4">{{name}}!</h1>
-    <p class="mt-5">Confidence: <strong>{{confidence}}%</strong></p>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script>
+        $(document).ready(function(){
+        $('.my-2').hide().fadeIn(1000);
+        $('img').hide().fadeIn(1500);
+        $('a').hide().fadeIn(1500);
+        $('p').hide().fadeIn(2000);
+        });
+    </script>
+    <!-- end
+    ================================================== -->
+
+    <p class="lead">Process is done successfully. You have result image of</p>
     <div class="my-2">
         <img style="max-width: 600px; width: 100%;" src="{{ url_for('static', filename=generated_image) }}" alt="">
     </div>
