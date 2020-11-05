@@ -9,3 +9,7 @@ pytorch-test/shared/deep/DCGAN/Weight_Generator/*.pth
 # pytorch-test/shared/models.pyc
 pytorch-test/shared/deep/DCGAN/__pycache__/
 pytorch-test/shared/static/out/*.jpg
+pytorch-test/shared/static/img/clothimage1.JPG
+pytorch-test/shared/static/img/partimage2.JPG
+pytorch-test/shared/static/img/partofimage2.JPG
+pytorch-test/shared/static/img/partofimage1.JPG
