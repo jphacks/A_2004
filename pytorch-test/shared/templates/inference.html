@@ -14,18 +14,107 @@
         $('p').hide().fadeIn(2000);
         });
     </script>
+
+    <script type="text/javascript">
+    jQuery(document).ready(function($) {
+    
+        // opacityrollover のオプション設定
+        var onMouseOutOpacity = 0.67;  // マウスアウト時の透明度
+        $('#thumbs ul.thumbs li').opacityrollover({
+            mouseOutOpacity:   onMouseOutOpacity,
+            mouseOverOpacity:  1.0,
+            fadeSpeed:         'fast',
+            exemptionSelector: '.selected'
+        });
+    
+        // Galleriffic のオプション設定
+        var gallery = $('#thumbs').galleriffic({
+        delay: 5000, // 画像が切り替わる時間
+        numThumbs: 10, // 1画面に表示させるサムネイルの数
+        preloadAhead: 10, // プリロードする画像数
+        enableTopPager: false, // サムネイルの上部のページャーを出す/出さない
+        enableBottomPager: true, // サムネイルの下部のページャーを出す/出さない
+        maxPagesToShow: 5, // ページの最大値
+        imageContainerSel: '#slideshow', // スライドショー画像部分のid名
+        controlsContainerSel: '#controls', // コントロール部分のid名
+        captionContainerSel: '#caption', // キャプション部分のid名
+        loadingContainerSel: '#loading', // ローディング部分のid名
+        renderSSControls: true, // trueでスライドショー画像の上部にスライドショーのオンオフボタン表示
+        renderNavControls: true, // trueでスライドショー画像の上部に画像送り戻しのボタン表示
+        playLinkText: 'Slideshowを再生する', // コントローラーのplayのテキスト変更
+        pauseLinkText: 'Slideshowを停止する', // コントローラーのPauseのテキスト変更
+        prevLinkText: '&amp;amp;amp;amp;lsaquo; 前の画像', // コントローラーの前の画像へのテキスト変更
+        nextLinkText: '次の画像 &amp;amp;amp;amp;rsaquo;', // コントローラーの次の画像へのテキスト変更
+        nextPageLinkText: 'Next &amp;amp;amp;amp;rsaquo;',　// コントローラーの次ページへのテキスト変更
+        prevPageLinkText: '&amp;amp;amp;amp;lsaquo; Prev',　// コントローラーの前ページへのテキスト変更
+        enableHistory: false,
+        autoStart: false, // 自動再生するかしないか
+        syncTransitions: true,
+        defaultTransitionDuration: 900,
+        onSlideChange: function(prevIndex, nextIndex) {
+        // 'this' refers to the gallery, which is an extension of $('#thumbs')
+        this.find('ul.thumbs').children()
+        .eq(prevIndex).fadeTo('fast', onMouseOutOpacity).end()
+        .eq(nextIndex).fadeTo('fast', 1.0);
+        },
+        onPageTransitionOut: function(callback) {
+        this.fadeTo('fast', 0.0, callback);
+        },
+        onPageTransitionIn: function() {
+        this.fadeTo('fast', 1.0);
+        }
+        });
+    });
+    </script>
     <!-- end
     ================================================== -->
 
     <p class="lead">Process is done successfully. You have result image of</p>
     <div class="my-2">
-        <img style="max-width: 600px; width: 100%;" src="{{ url_for('static', filename=generated_image) }}" alt="">
+        
     </div>
     
+    <!-- スライドショー部分ここから -->
+    <div id="gallery" class="content">
+    <div id="controls" class="controls"></div>
+    <div id="nav" class="controls"></div>
+    <!-- ↑コントロラー（次へ前へボタンなど）表示部分 -- >
+    <div class="slideshow-container">
+    <!-- ↑スライドショー画像表示部分 -->
+    <div id="loading" class="loader"></div>
+    <!-- ↑ローディング表示部分 -->
+    <div id="slideshow" class="slideshow"></div>
+    <!-- ↑スライドショー画像表示部分 -->
+    </div>
+    <div id="caption" class="caption-container"></div>
+    <!-- ↑キャプション部分 キャプション付けたい時記入する -->
+    </div>
+    <!-- スライドショー部分ここまで -->
+    
+    <!-- サムネイル部分ここから -->
+    <div id="thumbs" class="navigation">
+    <ul class="thumbs noscript">
+    <li>
+    <a class="thumb" name="leaf" href="http://farm4.static.flickr.com/3261/2538183196_8baf9a8015.jpg" title="Title #0">
+    <img src="http://farm4.static.flickr.com/3261/2538183196_8baf9a8015_s.jpg" alt="Title #0" />
+    </a>
+    <div class="caption">Description</div>
+    </li>
+    </ul>
+
+    <ul class="thumbs noscript">
+        <li>
+        <a class="thumb" name="leaf" href="/static/img/1426,420.png" title="Title #0">
+        <img src="/static/img/1426,420.png" alt="Title #0" />
+        </a>
+        <div class="caption">Description</div>
+        </li>
+        </ul>
+    </div>
+    <!-- サムネイル部分ここまで -->
 
     <p class="mt-5"> <a href="/">もう一度作成する</a></p>
     <a href="/static/img/1426,420.png" download="AInu.png">画像を保存</a>
-    <a class="p-2 text-dark" href="https://suzuri.jp/">この模様でグッズを作る</a>
     <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <div class="line-it-button" data-lang="ja" data-type="share-b" data-ver="3" data-url="http://127.0.0.1:3000/" data-color="default" data-size="small" data-count="true" style="display: none;"></div>
