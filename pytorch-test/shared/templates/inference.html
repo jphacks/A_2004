@@ -12,6 +12,14 @@
         $('a').hide().fadeIn(1500);
         $('p').hide().fadeIn(2000);
         });
+
+        $('img').hover(function (){
+            $("#sample").animate({width:"500px"},1000,"easeInOutExpo");
+            //$('.text-white').fadeIn();
+        },function (){
+            $("#sample").animate({width:"64px"},1000,"easeInOutExpo");
+            //$('.text-white').fadeOut();
+        });
     </script>
 
     <script type="text/javascript">
