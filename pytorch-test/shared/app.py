@@ -35,10 +35,6 @@ def index():
 def about():
     return render_template('about.html')
 
-@app.route('/confirm')
-def confirm():
-    return render_template('confirm.html')
-
 @app.route('/introduce')
 def introduce():
     return render_template('introduce.html')
