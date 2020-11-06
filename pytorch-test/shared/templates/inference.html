@@ -119,16 +119,14 @@
 
 <!--フォルダ内画像一覧表示部ここから -->
     <script type=text/javascript>   
-        var FirstNumber = 0;
-        var SecondNumber = 0;
-
         var innerIMG_a = document.getElementById('innerIMG_a');
         var innerIMG_li = document.getElementById('innerIMG_li');
         var innerIMG_plus = document.createElement('innerIMG_plus');
 
-        for(var num1=0; FirstNumber < 64; num1++){ //64は生成画像のファイル数
+        for(var num1=0; num1< 64; num1++){ //64は生成画像のファイル数
             var url1 = 'static/out/' + num1 + '.jpg';
             innerIMG_plus.innerHTML = '<a><img src=" ' + url1 + '" alt="Title #0"/></a>';
+            console.log(url1)
             var innerIMG_plus = document.createElement('innerIMG_plus'+num1);
             innerIMG_a.appendChild(innerIMG_plus);
         }
