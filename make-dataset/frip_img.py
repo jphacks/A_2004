@@ -38,7 +38,7 @@ try:
                 if angle in 'random':
                     angle = random.randrange(1,360)
             Imag_change = Imag.rotate(int(angle),expand=True)
-            Imag_change.save('./{}_{}/{}_{}'.format(command,dir_name,command,image_path.split('/')[-1]))
+            Imag_change.save('./{}_{}/{}{}_{}'.format(command,dir_name,command,angle,image_path.split('/')[-1]))
 
 except Exception as e:
     print('予期せぬエラーが発生しました')
