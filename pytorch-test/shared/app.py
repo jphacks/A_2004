@@ -14,6 +14,7 @@ from math import floor
 # from torchvision import transforms
 # from models_dcgan import Generator
 import models_dcgan
+import models_dcgan2
 
 app = Flask(__name__)
 
@@ -42,21 +43,22 @@ def introduce():
 @app.route('/infer', methods=['POST'])
 def success():
     if request.method == 'POST':
-        models_dcgan.test()
+        flag = 0
+        models_dcgan.test(flag)
         # filename = models_dcgan.test()
-        # f = request.files['file']
-        # saveLocation = f.filename
-        # f.save(saveLocation)
-        # inference, confidence = model.infer(saveLocation)
-        # make a percentage with 2 decimal points
-        # confidence = floor(confidence * 10000) / 100
-        # delete file after making an inference
-        # os.remove(saveLocation)
-        # respond with the inference
         # return render_template('inference.html', name=inference, confidence=confidence)
         # return render_template('inference.html', generated_image=filename)
         return render_template('inference.html')
 
+@app.route('/infer2', methods=['POST'])
+def success2():
+    if request.method == 'POST':
+        flag = 1
+        models_dcgan.test(flag)
+        # filename = models_dcgan.test()
+        # return render_template('inference.html', name=inference, confidence=confidence)
+        # return render_template('inference.html', generated_image=filename)
+        return render_template('inference.html')
 
 if __name__ == '__main__':
     app.debug = True

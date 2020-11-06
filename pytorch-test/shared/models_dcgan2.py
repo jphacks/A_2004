@@ -16,7 +16,7 @@ from torchvision import transforms
 import datetime
 import time
 
-def test(flag):
+def test():
     # str_test = "hello2"
     # 潜在特徴100次元ベクトルz
     nz = 100
@@ -32,12 +32,7 @@ def test(flag):
     model_G = Generator().to(device)
     make_file_num = 64
     z = torch.randn(make_file_num, nz, 1, 1).to(device)
-    if flag == 0:
-        model_path = 'model_parameter/G_0770.pth'
-    elif flag == 1:
-        model_path = 'model_parameter/G_0490.pth'
-    else:
-        print("Error")
+    model_path = 'model_parameter/G_0490.pth'
     model_G.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
     fake_img = model_G(z)
     for index in range(0,make_file_num):
