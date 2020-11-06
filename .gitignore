@@ -1,6 +1,24 @@
 .vagrant/
 *.pyc
+*.pth
 .DS_Store
-./make-dataset/out_img/*.jpg
-./make-dataset/in_pdf/*.pdf
-./make-dataset/dataset/*.jpg
+make-dataset/out_img/*.jpg
+make-dataset/in_pdf/*.pdf
+make-dataset/dataset/*.jpg
+pytorch-test/shared/static/out/*.jpg
+pytorch-test/shared/static/img/*.jpg
+pytorch-test/shared/model_parameter/*.pth
+pytorch-test/shared/static/out/*.jpg
+
+# *.pth
+pytorch-test/shared/deep/DCGAN/sample-data/jpg/*.jpg
+pytorch-test/shared/deep/DCGAN/Generated_Image/*.jpg
+pytorch-test/shared/deep/DCGAN/Weight_Discriminator/*.pth
+pytorch-test/shared/deep/DCGAN/Weight_Generator/*.pth
+# pytorch-test/shared/models.pyc
+pytorch-test/shared/deep/DCGAN/__pycache__/
+pytorch-test/shared/static/out/*.jpg
+pytorch-test/shared/static/img/clothimage1.JPG
+pytorch-test/shared/static/img/partofimage1.JPG
+pytorch-test/shared/static/img/partofimage2.JPG
+pytorch-test/shared/model_parameter/*.pth
