@@ -26,7 +26,7 @@ def test():
     model_G = Generator().to(device)
     make_file_num = 1
     z = torch.randn(make_file_num, nz, 1, 1).to(device)
-    model_path = 'model_parameter/G_990.pth'
+    model_path = 'model_parameter/G_0770.pth'
     model_G.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
     fake_img = model_G(z)
     dt_now = datetime.datetime.now()
