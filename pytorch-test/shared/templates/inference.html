@@ -29,7 +29,7 @@
     
         // Galleriffic のオプション設定
         var gallery = $('#thumbs').galleriffic({
-        delay: 5000, // 画像が切り替わる時間
+        delay: 2000, // 画像が切り替わる時間
         numThumbs: 10, // 1画面に表示させるサムネイルの数
         preloadAhead: 10, // プリロードする画像数
         enableTopPager: false, // サムネイルの上部のページャーを出す/出さない
@@ -48,7 +48,7 @@
         nextPageLinkText: 'Next &amp;amp;amp;amp;rsaquo;',　// コントローラーの次ページへのテキスト変更
         prevPageLinkText: '&amp;amp;amp;amp;lsaquo; Prev',　// コントローラーの前ページへのテキスト変更
         enableHistory: false,
-        autoStart: false, // 自動再生するかしないか
+        autoStart: true, // 自動再生するかしないか
         syncTransitions: true,
         defaultTransitionDuration: 900,
         onSlideChange: function(prevIndex, nextIndex) {
@@ -69,10 +69,7 @@
     <!-- end
     ================================================== -->
 
-    <p class="lead">Process is done successfully. You have result image of</p>
-    <div class="my-2">
-        
-    </div>
+    <p class="lead">Process is done successfully. You have result images of<br></p>
     
     <!-- スライドショー部分ここから -->
     <div id="gallery" class="content">
@@ -94,94 +91,14 @@
     <!-- サムネイル部分ここから -->
 
     <div id="thumbs" class="navigation  col-xs-6">
-
     <ul class="thumbs noscript">
-    <li>
-        <a class="thumb" name="leaf" href="static/out/160-0-0.jpg" title="Title #0">
+    <li id="innerIMG_li">
+        <a class="thumb" id="innerIMG_a" name="leaf" href="static/out/160-0-0.jpg" title="Title #0">
         <img src="static/out/160-0-0.jpg" alt="Title #0" />
         </a>
         <div class="caption">DescriptionA</div>
     </li>
-    <li>
-        
-        <a class="thumb" name="leaf" href="static/out/160-0-66.jpg" title="Title #0">
-        <img src="static/out/160-0-66.jpg" alt="Title #0" />
-        </a>
-        <div class="caption">DescriptionB</div>
-    </li>
-    <li>
-        <a class="thumb" name="leaf" href="static/out/160-0-132.jpg" title="Title #0">
-        <img src="static/out/160-0-132.jpg" alt="Title #0" />
-        </a>
-        <div class="caption">DescriptionC</div>
-    </li>
-    <li>
-        <a class="thumb" name="leaf" href="static/out/160-0-198.jpg" title="Title #0">
-        <img src="static/out/160-0-198.jpg" alt="Title #0" />
-        </a>
-        <div class="caption">DescriptionD</div>
-        </a>
-    </li>
     </ul>
-    <div id="thumbs" class="navigation  col-xs-6">
-
-        <ul class="thumbs noscript">
-        <li>
-            <a class="thumb" name="leaf" href="static/out/160-0-0.jpg" title="Title #0">
-            <img src="static/out/160-0-0.jpg" alt="Title #0" />
-            </a>
-            <div class="caption">DescriptionA</div>
-        </li>
-        <li>
-            
-            <a class="thumb" name="leaf" href="static/out/160-0-66.jpg" title="Title #0">
-            <img src="static/out/160-0-66.jpg" alt="Title #0" />
-            </a>
-            <div class="caption">DescriptionB</div>
-        </li>
-        <li>
-            <a class="thumb" name="leaf" href="static/out/160-0-132.jpg" title="Title #0">
-            <img src="static/out/160-0-132.jpg" alt="Title #0" />
-            </a>
-            <div class="caption">DescriptionC</div>
-        </li>
-        <li>
-            <a class="thumb" name="leaf" href="static/out/160-0-198.jpg" title="Title #0">
-            <img src="static/out/160-0-198.jpg" alt="Title #0" />
-            </a>
-            <div class="caption">DescriptionD</div>
-            </a>
-        </li>
-        </ul>
-
-
-    <ul class="thumbs noscript">
-        <li>
-        <a class="thumb" name="leaf" href="static/out/160-0-264.jpg" title="Title #0">
-        <img src="static/out/160-0-264.jpg" alt="Title #0" />
-        </a>
-        <div class="caption">Description</div>
-        </li>
-    </ul>
-
-    <ul class="thumbs noscript">
-        <li>
-        <a class="thumb" name="leaf" href="static/out/160-0-330.jpg" title="Title #0">
-        <img src="static/out/160-0-330.jpg" alt="Title #0" />
-        </a>
-        <div class="caption">Description</div>
-        </li>
-    </ul>
-
-    <ul class="thumbs noscript">
-        <li>
-        <a class="thumb" name="leaf" href="static/out/160-0-396.jpg" title="Title #0">
-        <img src="static/out/160-0-396.jpg" alt="Title #0" />
-        </a>
-        <div class="caption">Description</div>
-        </li>
-    </ul>
-
     </div>
     <!-- サムネイル部分ここまで -->
 
@@ -193,4 +110,27 @@
     <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
 </div>
 
+<script type=text/javascript>
+    var FirstNumber = 0;
+    var SecondNumber = 0;
+
+    var innerIMG_a = document.getElementById('innerIMG_a');
+    var innerIMG_li = document.getElementById('innerIMG_li');
+    var innerIMG_plus = document.createElement('innerIMG_plus');
+
+    for(var num1=0; FirstNumber < 528; num1++){
+        for(var num2=0; SecondNumber < 528; num2++){
+            var url1 = 'static/out/160-' + FirstNumber + '-' + SecondNumber + '.jpg';
+            innerIMG_plus.innerHTML = '<a><img src=" ' + url1 + '" alt="Title #0"/></a>';
+
+            var innerIMG_plus = document.createElement('innerIMG_plus'+num1+num2);
+
+            innerIMG_a.appendChild(innerIMG_plus);
+
+            SecondNumber += 66;
+        }
+        FirstNumber += 66;
+        SecondNumber = 0;
+    }
+</script>
 {% endblock %}
