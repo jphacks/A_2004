@@ -14,10 +14,9 @@ from math import floor
 # from torchvision import transforms
 # from models_dcgan import Generator
 import models_dcgan
-import models_dcgan2
 
 app = Flask(__name__)
-
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 app.config['UPLOAD_FOLDER'] = 'uploads'
 
 # model = MobileNet()
@@ -48,6 +47,11 @@ def success():
         # filename = models_dcgan.test()
         # return render_template('inference.html', name=inference, confidence=confidence)
         # return render_template('inference.html', generated_image=filename)
+        # r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+        # r.headers["Pragma"] = "no-cache"
+        # r.headers["Expires"] = "0"
+        # r.headers['Cache-Control'] = 'public, max-age=0'
+        # return r
         return render_template('inference.html')
 
 @app.route('/infer2', methods=['POST'])
@@ -58,7 +62,24 @@ def success2():
         # filename = models_dcgan.test()
         # return render_template('inference.html', name=inference, confidence=confidence)
         # return render_template('inference.html', generated_image=filename)
+        # r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+        # r.headers["Pragma"] = "no-cache"
+        # r.headers["Expires"] = "0"
+        # r.headers['Cache-Control'] = 'public, max-age=0'
+        # return r
         return render_template('inference.html')
+
+@app.after_request
+def add_header(r):
+    """
+    Add headers to both force latest IE rendering engine or Chrome Frame,
+    and also to cache the rendered page for 10 minutes.
+    """
+    r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    r.headers["Pragma"] = "no-cache"
+    r.headers["Expires"] = "0"
+    r.headers['Cache-Control'] = 'public, max-age=0'
+    return r
 
 if __name__ == '__main__':
     app.debug = True

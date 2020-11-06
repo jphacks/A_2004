@@ -34,8 +34,10 @@ def test(flag):
     z = torch.randn(make_file_num, nz, 1, 1).to(device)
     if flag == 0:
         model_path = 'model_parameter/G_0770.pth'
+        print("Load model: " + model_path)
     elif flag == 1:
-        model_path = 'model_parameter/G_0490.pth'
+        model_path = 'model_parameter/G_0100.pth'
+        print("Load model: " + model_path)
     else:
         print("Error")
     model_G.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
@@ -53,7 +55,7 @@ def test(flag):
         filename = str(index) + ".jpg"
         filename_path = "static/out/" + filename
         returen_filename_path = "out/" + filename
-        print("save file name: " + filename)
+        # print("save file name: " + filename)
         save_image(fake_img[index],filename_path)
     # print(type(fake_img))
 
