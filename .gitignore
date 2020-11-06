@@ -13,4 +13,4 @@ pytorch-test/shared/static/img/clothimage1.JPG
 pytorch-test/shared/static/img/partimage2.JPG
 pytorch-test/shared/static/img/partofimage2.JPG
 pytorch-test/shared/static/img/partofimage1.JPG
-pytorch-test/shared/model_parameter/G_0770.pth
+pytorch-test/shared/model_parameter/*.pth

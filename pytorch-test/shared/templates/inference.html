@@ -9,9 +9,16 @@
     <script>
         $(document).ready(function(){
         $('.my-2').hide().fadeIn(1000);
-        $('img').hide().fadeIn(1500);
         $('a').hide().fadeIn(1500);
         $('p').hide().fadeIn(2000);
+        });
+
+        $('img').hover(function (){
+            $("#sample").animate({width:"500px"},1000,"easeInOutExpo");
+            //$('.text-white').fadeIn();
+        },function (){
+            $("#sample").animate({width:"64px"},1000,"easeInOutExpo");
+            //$('.text-white').fadeOut();
         });
     </script>
 
@@ -29,7 +36,7 @@
     
         // Galleriffic のオプション設定
         var gallery = $('#thumbs').galleriffic({
-        delay: 5000, // 画像が切り替わる時間
+        delay: 2000, // 画像が切り替わる時間
         numThumbs: 10, // 1画面に表示させるサムネイルの数
         preloadAhead: 10, // プリロードする画像数
         enableTopPager: false, // サムネイルの上部のページャーを出す/出さない
@@ -48,7 +55,7 @@
         nextPageLinkText: 'Next &amp;amp;amp;amp;rsaquo;',　// コントローラーの次ページへのテキスト変更
         prevPageLinkText: '&amp;amp;amp;amp;lsaquo; Prev',　// コントローラーの前ページへのテキスト変更
         enableHistory: false,
-        autoStart: false, // 自動再生するかしないか
+        autoStart: true, // 自動再生するかしないか
         syncTransitions: true,
         defaultTransitionDuration: 900,
         onSlideChange: function(prevIndex, nextIndex) {
@@ -69,10 +76,7 @@
     <!-- end
     ================================================== -->
 
-    <p class="lead">Process is done successfully. You have result image of</p>
-    <div class="my-2">
-        
-    </div>
+    <p class="lead">Process is done successfully. You have result images of<br></p>
     
     <!-- スライドショー部分ここから -->
     <div id="gallery" class="content">
@@ -94,94 +98,14 @@
     <!-- サムネイル部分ここから -->
 
     <div id="thumbs" class="navigation  col-xs-6">
-
     <ul class="thumbs noscript">
-    <li>
-        <a class="thumb" name="leaf" href="static/out/160-0-0.jpg" title="Title #0">
-        <img src="static/out/160-0-0.jpg" alt="Title #0" />
+    <li id="innerIMG_li">
+        <a class="thumb" id="innerIMG_a" name="leaf" href="static/out/0.jpg" title="Title #0">
+        <img src="static/out/0.jpg" alt="Title #0" />
         </a>
         <div class="caption">DescriptionA</div>
     </li>
-    <li>
-        
-        <a class="thumb" name="leaf" href="static/out/160-0-66.jpg" title="Title #0">
-        <img src="static/out/160-0-66.jpg" alt="Title #0" />
-        </a>
-        <div class="caption">DescriptionB</div>
-    </li>
-    <li>
-        <a class="thumb" name="leaf" href="static/out/160-0-132.jpg" title="Title #0">
-        <img src="static/out/160-0-132.jpg" alt="Title #0" />
-        </a>
-        <div class="caption">DescriptionC</div>
-    </li>
-    <li>
-        <a class="thumb" name="leaf" href="static/out/160-0-198.jpg" title="Title #0">
-        <img src="static/out/160-0-198.jpg" alt="Title #0" />
-        </a>
-        <div class="caption">DescriptionD</div>
-        </a>
-    </li>
     </ul>
-    <div id="thumbs" class="navigation  col-xs-6">
-
-        <ul class="thumbs noscript">
-        <li>
-            <a class="thumb" name="leaf" href="static/out/160-0-0.jpg" title="Title #0">
-            <img src="static/out/160-0-0.jpg" alt="Title #0" />
-            </a>
-            <div class="caption">DescriptionA</div>
-        </li>
-        <li>
-            
-            <a class="thumb" name="leaf" href="static/out/160-0-66.jpg" title="Title #0">
-            <img src="static/out/160-0-66.jpg" alt="Title #0" />
-            </a>
-            <div class="caption">DescriptionB</div>
-        </li>
-        <li>
-            <a class="thumb" name="leaf" href="static/out/160-0-132.jpg" title="Title #0">
-            <img src="static/out/160-0-132.jpg" alt="Title #0" />
-            </a>
-            <div class="caption">DescriptionC</div>
-        </li>
-        <li>
-            <a class="thumb" name="leaf" href="static/out/160-0-198.jpg" title="Title #0">
-            <img src="static/out/160-0-198.jpg" alt="Title #0" />
-            </a>
-            <div class="caption">DescriptionD</div>
-            </a>
-        </li>
-        </ul>
-
-
-    <ul class="thumbs noscript">
-        <li>
-        <a class="thumb" name="leaf" href="static/out/160-0-264.jpg" title="Title #0">
-        <img src="static/out/160-0-264.jpg" alt="Title #0" />
-        </a>
-        <div class="caption">Description</div>
-        </li>
-    </ul>
-
-    <ul class="thumbs noscript">
-        <li>
-        <a class="thumb" name="leaf" href="static/out/160-0-330.jpg" title="Title #0">
-        <img src="static/out/160-0-330.jpg" alt="Title #0" />
-        </a>
-        <div class="caption">Description</div>
-        </li>
-    </ul>
-
-    <ul class="thumbs noscript">
-        <li>
-        <a class="thumb" name="leaf" href="static/out/160-0-396.jpg" title="Title #0">
-        <img src="static/out/160-0-396.jpg" alt="Title #0" />
-        </a>
-        <div class="caption">Description</div>
-        </li>
-    </ul>
-
     </div>
     <!-- サムネイル部分ここまで -->
 
@@ -192,5 +116,23 @@
     <div class="line-it-button" data-lang="ja" data-type="share-b" data-ver="3" data-url="http://127.0.0.1:3000/" data-color="default" data-size="small" data-count="true" style="display: none;"></div>
     <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
 </div>
+
+<!--フォルダ内画像一覧表示部ここから -->
+    <script type=text/javascript>   
+        var FirstNumber = 0;
+        var SecondNumber = 0;
+
+        var innerIMG_a = document.getElementById('innerIMG_a');
+        var innerIMG_li = document.getElementById('innerIMG_li');
+        var innerIMG_plus = document.createElement('innerIMG_plus');
+
+        for(var num1=0; FirstNumber < 64; num1++){ //64は生成画像のファイル数
+            var url1 = 'static/out/' + num1 + '.jpg';
+            innerIMG_plus.innerHTML = '<a><img src=" ' + url1 + '" alt="Title #0"/></a>';
+            var innerIMG_plus = document.createElement('innerIMG_plus'+num1);
+            innerIMG_a.appendChild(innerIMG_plus);
+        }
+    </script>
+<!--フォルダ内画像一覧表示部ここまで -->
 
 {% endblock %}

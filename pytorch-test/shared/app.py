@@ -43,6 +43,7 @@ def introduce():
 def success():
     if request.method == 'POST':
         models_dcgan.test()
+        # filename = models_dcgan.test()
         # f = request.files['file']
         # saveLocation = f.filename
         # f.save(saveLocation)
@@ -53,7 +54,8 @@ def success():
         # os.remove(saveLocation)
         # respond with the inference
         # return render_template('inference.html', name=inference, confidence=confidence)
-        return render_template('inference.html', generated_image=filename)
+        # return render_template('inference.html', generated_image=filename)
+        return render_template('inference.html')
 
 
 if __name__ == '__main__':
