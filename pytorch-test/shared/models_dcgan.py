@@ -39,7 +39,7 @@ def test():
         # timestamp = str(dt_now).replace(' ', '')
         #print(timestamp)
         #filename = str(timestamp) + ".jpg"
-        filename = index + ".jpg"
+        filename = str(index) + ".jpg"
         filename_path = "static/out/" + filename
         returen_filename_path = "out/" + filename
         print("save file name: " + filename)
