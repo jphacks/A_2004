@@ -42,7 +42,7 @@ def introduce():
 @app.route('/infer', methods=['POST'])
 def success():
     if request.method == 'POST':
-        filename = models_dcgan.test()
+        models_dcgan.test()
         # f = request.files['file']
         # saveLocation = f.filename
         # f.save(saveLocation)
