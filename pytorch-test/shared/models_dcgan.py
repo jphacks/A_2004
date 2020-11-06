@@ -14,6 +14,7 @@ import statistics
 from PIL import Image
 from torchvision import transforms
 import datetime
+import time
 
 def test():
     # str_test = "hello2"
@@ -21,6 +22,11 @@ def test():
     nz = 100
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
     # print('using device:', device)
+    # シード値の決定
+    dt_now = int(time.time())
+    
+    torch.manual_seed(dt_now)
+    torch.cuda.manual_seed(dt_now)
     ### 訓練関数の作成 ###
     # print("訓練関数の作成")
     model_G = Generator().to(device)
