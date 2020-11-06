@@ -12,3 +12,4 @@ pytorch-test/shared/static/out/*.jpg
 pytorch-test/shared/static/img/clothimage1.JPG
 pytorch-test/shared/static/img/partofimage1.JPG
 pytorch-test/shared/static/img/partofimage2.JPG
+pytorch-test/shared/model_parameter/*.pth
