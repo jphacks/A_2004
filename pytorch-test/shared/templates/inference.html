@@ -110,27 +110,27 @@
     <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
 </div>
 
-<script type=text/javascript>
-    var FirstNumber = 0;
-    var SecondNumber = 0;
+    <script type=text/javascript>   
+        var FirstNumber = 0;
+        var SecondNumber = 0;
 
-    var innerIMG_a = document.getElementById('innerIMG_a');
-    var innerIMG_li = document.getElementById('innerIMG_li');
-    var innerIMG_plus = document.createElement('innerIMG_plus');
+        var innerIMG_a = document.getElementById('innerIMG_a');
+        var innerIMG_li = document.getElementById('innerIMG_li');
+        var innerIMG_plus = document.createElement('innerIMG_plus');
 
-    for(var num1=0; FirstNumber < 528; num1++){
-        for(var num2=0; SecondNumber < 528; num2++){
-            var url1 = 'static/out/160-' + FirstNumber + '-' + SecondNumber + '.jpg';
-            innerIMG_plus.innerHTML = '<a><img src=" ' + url1 + '" alt="Title #0"/></a>';
+        for(var num1=0; FirstNumber < 528; num1++){
+            for(var num2=0; SecondNumber < 528; num2++){
+                var url1 = 'static/out/160-' + FirstNumber + '-' + SecondNumber + '.jpg';
+                innerIMG_plus.innerHTML = '<a><img src=" ' + url1 + '" alt="Title #0"/></a>';
 
-            var innerIMG_plus = document.createElement('innerIMG_plus'+num1+num2);
+                var innerIMG_plus = document.createElement('innerIMG_plus'+num1+num2);
 
-            innerIMG_a.appendChild(innerIMG_plus);
+                innerIMG_a.appendChild(innerIMG_plus);
 
-            SecondNumber += 66;
+                SecondNumber += 66;
+            }
+            FirstNumber += 66;
+            SecondNumber = 0;
         }
-        FirstNumber += 66;
-        SecondNumber = 0;
-    }
-</script>
+    </script>
 {% endblock %}
