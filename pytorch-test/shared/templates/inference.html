@@ -100,8 +100,8 @@
     <div id="thumbs" class="navigation  col-xs-6">
     <ul class="thumbs noscript">
     <li id="innerIMG_li">
-        <a class="thumb" id="innerIMG_a" name="leaf" href="static/out/160-0-0.jpg" title="Title #0">
-        <img src="static/out/160-0-0.jpg" alt="Title #0" />
+        <a class="thumb" id="innerIMG_a" name="leaf" href="static/out/0.jpg" title="Title #0">
+        <img src="static/out/0.jpg" alt="Title #0" />
         </a>
         <div class="caption">DescriptionA</div>
     </li>
@@ -126,19 +126,11 @@
         var innerIMG_li = document.getElementById('innerIMG_li');
         var innerIMG_plus = document.createElement('innerIMG_plus');
 
-        for(var num1=0; FirstNumber < 528; num1++){
-            for(var num2=0; SecondNumber < 528; num2++){
-                var url1 = 'static/out/160-' + FirstNumber + '-' + SecondNumber + '.jpg';
-                innerIMG_plus.innerHTML = '<a><img src=" ' + url1 + '" alt="Title #0"/></a>';
-
-                var innerIMG_plus = document.createElement('innerIMG_plus'+num1+num2);
-
-                innerIMG_a.appendChild(innerIMG_plus);
-
-                SecondNumber += 66;
-            }
-            FirstNumber += 66;
-            SecondNumber = 0;
+        for(var num1=0; FirstNumber < 64; num1++){ //64は生成画像のファイル数
+            var url1 = 'static/out/' + num1 + '.jpg';
+            innerIMG_plus.innerHTML = '<a><img src=" ' + url1 + '" alt="Title #0"/></a>';
+            var innerIMG_plus = document.createElement('innerIMG_plus'+num1);
+            innerIMG_a.appendChild(innerIMG_plus);
         }
     </script>
 <!--フォルダ内画像一覧表示部ここまで -->
