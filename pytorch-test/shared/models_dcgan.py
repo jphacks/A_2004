@@ -24,28 +24,30 @@ def test():
     ### 訓練関数の作成 ###
     # print("訓練関数の作成")
     model_G = Generator().to(device)
-    make_file_num = 1
+    make_file_num = 64
     z = torch.randn(make_file_num, nz, 1, 1).to(device)
-    model_path = 'model_parameter/G_990.pth'
+    model_path = 'model_parameter/G_0770.pth'
     model_G.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
     fake_img = model_G(z)
-    dt_now = datetime.datetime.now()
-    # timestamp = str(dt_now).replace('.', "")
-    # timestamp = str(dt_now).strip()
-    timestamp = str(dt_now).replace(' ','_')
-    timestamp = timestamp.replace(':','_')
-    timestamp = timestamp.replace('.','')
-    # timestamp = str(dt_now).replace(' ', '')
-    print(timestamp)
-    filename = str(timestamp) + ".jpg"
-    filename_path = "static/out/" + filename
-    returen_filename_path = "out/" + filename
-    print("save file name: " + filename)
-    save_image(fake_img,filename_path)
+    for index in range(0,make_file_num):
+        # dt_now = datetime.datetime.now()
+        # timestamp = str(dt_now).replace('.', "")
+        # timestamp = str(dt_now).strip()
+        #timestamp = str(dt_now).replace(' ','_')
+        #timestamp = timestamp.replace(':','_')
+        #timestamp = timestamp.replace('.','')
+        # timestamp = str(dt_now).replace(' ', '')
+        #print(timestamp)
+        #filename = str(timestamp) + ".jpg"
+        filename = index + ".jpg"
+        filename_path = "static/out/" + filename
+        returen_filename_path = "out/" + filename
+        print("save file name: " + filename)
+        save_image(fake_img[index],filename_path)
     # print(type(fake_img))
 
     # return fake_img
-    return returen_filename_path
+    # return returen_filename_path
 
 ### Generatorの作成 ###
 class Generator(nn.Module):
