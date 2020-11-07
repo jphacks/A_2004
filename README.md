@@ -1,6 +1,6 @@
 # 文様メーカー（アイヌ文様xTech)
 
-[![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2020/09/JPHACKS2020_ogp.jpg)](https://www.youtube.com/watch?v=G5rULR53uMk)
+![sumbnail](./sumbnail.png)][(https://www.youtube.com/watch?v=G5rULR53uMk)]
 
 ## 製品概要
 　私たちのアプリケーションでは、博物館に収蔵されているアイヌの木綿衣の文様を機械学習することで、アプリケーション内でオリジナルの文様を自動生成できるようにしました。
