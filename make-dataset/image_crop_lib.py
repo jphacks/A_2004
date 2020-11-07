@@ -42,7 +42,7 @@ def crop_right(size_y,size_x,img,img_gray,base):
 
     #最下部付近に文様はないと仮定
     for i_height in range(int(height*0.8),int(height*0.5),-1):
-        #中心より右側で切り取らないようにする
+        #中心より左側で切り取らないようにする
         for i_width in range(int(width*0.8),int(width/2),-1):
             #print(i_height,",",i_width)
             pixel_color = img_gray[i_height,i_width]
@@ -71,7 +71,7 @@ def crop_left_upper(size_y,size_x,img,img_gray,base):
     height,width,channels = img.shape[:3]
     #print("[",height,",",width,"]")
 
-    #最下部付近に文様はないと仮定
+    #最上部付近に文様はないと仮定
     for i_height in range(int(height*0.2),int(height*0.5)):
         #中心より右側で切り取らないようにする
         for i_width in range(int(width/5),int(width/2)):
@@ -102,9 +102,9 @@ def crop_right_upper(size_y,size_x,img,img_gray,base):
     height,width,channels = img.shape[:3]
     #print("[",height,",",width,"]")
 
-    #最下部付近に文様はないと仮定
+    #最上部付近に文様はないと仮定
     for i_height in range(int(height*0.2),int(height*0.5)):
-        #中心より右側で切り取らないようにする
+        #中心より左側で切り取らないようにする
         for i_width in range(int(width*0.8),int(width/2),-1):
             #print(i_height,",",i_width)
             pixel_color = img_gray[i_height,i_width]

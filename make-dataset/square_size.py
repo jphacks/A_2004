@@ -3,7 +3,7 @@ from pathlib import Path
 import os
 
 #im = Image.open('./data/src')
-dir = input("画像をナンバリングしたいディレクトリ名> ")
+dir = input("学習データ候補の画像があるディレクトリ名> ")
 p = Path("./{}".format(dir))
 files = sorted(p.glob("*"))
 
