@@ -1,4 +1,4 @@
-# 文様メーカー（アイヌ文様xTech)
+# 文様メーカー（アイヌ文様xTech）
 
 ![sumbnail](./sumbnail.png)][(https://www.youtube.com/watch?v=G5rULR53uMk)]
 
