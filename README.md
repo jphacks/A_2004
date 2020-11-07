@@ -1,4 +1,4 @@
-# 文様メーカー（アイヌ文様xTech)
+# 文様メーカー（アイヌ文様xTech）
 
 [![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2020/09/JPHACKS2020_ogp.jpg)](https://www.youtube.com/watch?v=G5rULR53uMk)
 
