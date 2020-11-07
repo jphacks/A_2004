@@ -36,7 +36,7 @@ def test(flag):
         model_path = 'model_parameter/G_0770.pth'
         print("Load model: " + model_path)
     elif flag == 1:
-        model_path = 'model_parameter/G_0100.pth'
+        model_path = 'model_parameter/G_0320.pth'
         print("Load model: " + model_path)
     else:
         print("Error")
