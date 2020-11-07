@@ -1,8 +1,9 @@
 # 各ソースコードの説明 h2
 学習データを作成する際に作成使用したプログラムの概要を以下に示す.
+teachdata.xlsxは未実装ではあるがConditionalStyleGANのための教師データである.
 * pdftojpg.py:in_pdf内のpdfデータを取得してout_imgにjpgとして出力する
 * rename_image.py:指定ディレクトリ内の全ての画像データを連番でid付けする
-* frip_img.py:指定したディレクトリの画像ファイルを全て上下反転、左右反転、中心を原点とした回転する
+* frip_img.py:指定したディレクトリの画像ファイルを全て上下反転, 左右反転, 中心を原点とした回転する
 * image_crop.py:opencvにより画像内の文様部分を抜き出すプログラム(サイズは64x64推奨)
 * image_crop_lib.py:image_crop.pyで使用している関数が置いてある
 * image_proc:学習データの前処理を行う関数が置いてある
@@ -10,6 +11,7 @@
 * square_size.py:長方形データを余白を補完して正方形データに変更
 * togray.py:学習データをグレースケールに変更
 * check_size.py:画像サイズが全て一致しているかを確認し不一致のものはサイズを変更
+* excel2pickle.py:教師データシートをConditionalStyleGAN用にpickle辞書へ変換する
 
 # 実行に必要なpythonライブラリ h2
 * pip3 install numpy
